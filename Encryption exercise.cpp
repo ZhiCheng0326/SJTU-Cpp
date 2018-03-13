@@ -1,7 +1,10 @@
 #include <iostream>
-#include <iomanip>
-#include <cmath>
-#include <string>
+
+/* This program converts integer into alphabet for encryption purpose.
+The encryption rule is:
+    add the integer with 13 then convert into corresponding alphabet.
+ */
+
 using namespace std;
 
 int main()
@@ -31,7 +34,7 @@ int main()
     char c = static_cast <char> (k);
     char d = static_cast <char> (l);
 
-    cout << "Guess yourself xD\n" << a << b << c << d;
+    cout << "Guess yourself xD: " << a << b << c << d;
 
     return 0;
 }
