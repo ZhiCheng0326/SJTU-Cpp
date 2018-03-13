@@ -1,5 +1,12 @@
 #include <iostream>
 
+/* This program converts a series of 9 digit numbers from User Input until "123" is obtained.
+The place value of the 3 digits number are as below.
+Hundreds represent even number. 
+Tens represent odd number.
+Ones represent number of digit.
+*/
+
 using namespace std;
 
 int main()
