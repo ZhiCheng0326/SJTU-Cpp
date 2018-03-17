@@ -3,30 +3,34 @@
 
 using namespace std;
 
+int bin(int n, int base)
+{
+    int result = 0, power = 0;
+    while (n > 0) {
+        result += (n % base) * round(pow(10, power)); // you have to round it because pow(10, bring in value from var = 2) gives 99.999
+        n /= base;
+        power++;
+    }
+
+    return result;
+}
+
 int main()
 {
-    int B;
-    while(B < 2 or B >20){
-        cout << "Please enter bit system between 2 to 20: " ;
-        cin >> B;
+    int base, n;
+
+    cout << "insert number: ";
+    cin >> n; cout << endl;
+
+    do {
+        cout << "Please enter bit system between 2 to 20: ";
+        cin >> base;
         cout << endl;
-    }
+    } while (base < 2 && base > 20);
 
-    for (int i = 64; i <= 64; ++i){
-        int div = i, power = 0, convertedNum = 0;
-        while(div != 0){
-            convertedNum = convertedNum +((div % 8) * (pow(10,power)));
-            cout << convertedNum << endl;
-            div = div / B;
-            cout << "div" << div <<endl;
-
-            power += 1;
-            cout << "power"<<power << endl;
-
-            cout <<endl;
-        }
-        //cout << convertedNum<< endl;
-    }
+    int result = bin(n, base);
+    cout << result << endl;
+    system("pause");
 
     return 0;
 }
