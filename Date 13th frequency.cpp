@@ -1,5 +1,8 @@
 #include <iostream>
 
+/* this program generates the frequency of which day does date 13th falls on starting from 01/01/1900 within a period of N.
+    N is the input from user. For example, if N = 20 means 01/01/1900 -> 31/12/1919. */
+
 using namespace std;
 
 int main()
