@@ -1,9 +1,28 @@
 #include <iostream>
 #include <cmath>
+/* This program available for base conversion between 2 to 20. User input a base system, for example: Octal. 
+    Number 1^2 -> 200^2 are then converted into Octal and determine is it palindrome. 
+    If Yes, print out it's value before square in Octa. */
+
+/* Output
+1 1
+2 4
+3 11
+6 44
+11 121
+13 171
+33 1331
+101 10201
+111 12321
+117 14141
+121 14641
+123 15351
+303 112211
+*/
 
 using namespace std;
 
-int Reverse(int convertedNum)
+int Reverse(int convertedNum)       //a number is palindrome if the number is the same before and after it has reversed.
 {
     int reversedNum = 0;
     int temp = convertedNum;
@@ -16,7 +35,7 @@ int Reverse(int convertedNum)
 
 }
 
-int conversion(int i, int B, int x)
+int conversion(int i, int B, int x)     //convert number into particular base
 {
     int squareNum = round(pow(i,x));
     int power = 0, convertedNum = 0;
@@ -39,7 +58,7 @@ int main()
 
     for (int i = 1; i <= 200; ++i){
         int convertedNum = conversion(i,B,2);       //converted Num indicates the number converted into particular base
-        int reversedNum = Reverse(convertedNum);    //reverse the reversed number
+        int reversedNum = Reverse(convertedNum);    //reverse the converted number
 
         if (convertedNum == reversedNum){               //if converted Num equal to reversed Num meaning they are palindrome
             int beforeSquare = conversion(i,B,1);
