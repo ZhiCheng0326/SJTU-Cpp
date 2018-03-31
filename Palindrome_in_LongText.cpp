@@ -105,7 +105,7 @@ int main()
             cout << input[j];
         }   
     }
-    cout << endl;
+    cout << endl; //output --> Madam,I'm Adam.
 
     system("PAUSE");
     return 0;
