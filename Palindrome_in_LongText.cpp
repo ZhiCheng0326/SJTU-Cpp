@@ -11,6 +11,54 @@ bool isAlphabet(char character){
     }      
 }
 
+void skipNonAlphabet(int &left, int &right, int length, char input[])
+{
+    while (!isAlphabet(input[left]) && left >= 0){left--;}
+    while (!isAlphabet(input[right]) && right < length){right++;}
+}
+
+void checkPalindrome(int prev, int next, int length, char input[], int &thisHead, int &thisTail, int &thisSum,bool odd)
+{
+    if (input[prev]==input[next]){
+
+                while(input[prev] == input[next] && prev >= 0 && next < length){
+                    thisSum += 2;
+                    prev--;
+                    next++;
+                    skipNonAlphabet(prev, next, length,input);
+                }
+            thisHead = prev + 1;
+            thisTail = next -1;
+            skipNonAlphabet(thisTail, thisHead, length,input);
+            }
+    if (odd) {thisSum +=1 ;}
+}
+
+void printOutput(int lastHead, int lastTail,char temp[],char input[])
+{
+    for(int j = lastHead; j <= lastTail; ++j){
+
+        if (temp[j] >= 'A' && temp[j]<='Z'){
+            cout << temp[j];
+        }
+        else{
+            cout << input[j];
+        }   
+    }
+    cout << endl; //output --> Madam,I'm Adam.
+}
+
+void lowerCase(int &length, char temp[], char input[])
+{
+    for (int k = 0; input[k] != '\0'; ++k){
+        length++;
+        if (input[k]>='A' && input[k]<='Z'){
+            temp[k]=input[k];
+            input[k]=input[k]+32;
+        }
+    }
+}
+
 int main()
 {
     char input[80];
@@ -20,72 +68,25 @@ int main()
     
     int lastSum = 0,thisSum = 0,prev = 0,next =0,length = 0;
     int lastHead,lastTail,thisHead,thisTail;
+    bool odd = true;
 
-    for (int k = 0; input[k] != '\0'; ++k){
-        length++;
-        if (input[k]>='A' && input[k]<='Z'){
-            temp[k]=input[k];
-            input[k]=input[k]+32;
-        }
-        else if (!isAlphabet(input[k])){
-            temp[k]=input[k]; 
-            int index = k;
-            do{
-                input[index]=input[index+1];
-                index++;
-            }
-            while(input[index] != '\0');
-            k--;                            //to go back to original k  
-        }
-    }
-    // cout << input <<endl;
-    // cout << temp << endl;
+    lowerCase(length, temp, input);
 
-    for(int i = 1; i< length; ++i){
+    for(int i = 1; i < length; ++i){
 
-        if (!isAlphabet(input[i])){
-            continue;
-        }
+        if (!isAlphabet(input[i])) {continue;}
 
-            // prev = i-1;
-            // next = i+1;
-            // while (!isAlphabet(input[prev]) && prev >= 0){prev--;}
-            // while (!isAlphabet(input[next]) && next < length){next++;}
+            prev = i-1;
+            next = i+1;
+            skipNonAlphabet(prev, next, length, input);
+            checkPalindrome(prev, next, length, input, thisHead, thisTail, thisSum,odd);
+   
+            prev = i;
+            next = i+1;
+            skipNonAlphabet(prev, next, length,input);
+            checkPalindrome(prev, next, length, input, thisHead, thisTail, thisSum,!odd);
 
-            if (input[i-1]==input[i+1]){
-                prev = i-1;
-                next = i+1;
-                while(input[prev] == input[next] && prev >= 0 && next < length){
-                    thisSum++;
-                    prev--;
-                    next++;
-                    // while (!isAlphabet(input[prev]) && prev >= 0){prev--;}
-                    // while (!isAlphabet(input[next]) && next < length){next++;}
-                }
-            thisHead = prev + 1;
-            thisTail = next -1;
-            }         
-
-            // prev = i;
-            // next = i+1;
-            // while (!isAlphabet(input[prev]) && prev >= 0){prev--;}
-            // while (!isAlphabet(input[next]) && next < length){next++;}
-
-            if (input[prev]==input[next]){
-                prev = i;
-                next = i+1;
-                while(input[prev] == input[next] && prev >= 0 && next < length){
-                    thisSum++;
-                    prev--;
-                    next++;
-                    // while (!isAlphabet(input[prev]) && prev >= 0){prev--;}
-                    // while (!isAlphabet(input[next]) && next < length){next++;}
-                }
-            thisHead = prev + 1;
-            thisTail = next -1; 
-            }  
-
-        if (thisSum >= lastSum){
+        if (thisSum > lastSum){
                 lastSum = thisSum;
                 thisSum = 0;
                 lastHead = thisHead;
@@ -95,18 +96,9 @@ int main()
                 thisSum = 0;
             }
     }
-    
-    for(int j = lastHead; j <= lastTail; ++j){
-
-        if (temp[j] <= 'a' && temp[j]>='z'){
-            cout << temp[j];
-        }
-        else{
-            cout << input[j];
-        }   
-    }
-    cout << endl; //output --> Madam,I'm Adam.
+    cout << lastSum << endl;
+    printOutput(lastHead,lastTail,temp,input);
 
     system("PAUSE");
     return 0;
-}
+    }
