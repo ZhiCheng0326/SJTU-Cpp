@@ -1,5 +1,10 @@
 #include <iostream>
 
+/* this question request for the best method for n players from a team to dive from A to B. Max 2 person to share one gas tank.
+Input number of players and time taken to swim across the river for each player.
+Output the total time needed for the whole team to reach B. 
+*/
+
 using namespace std;
 
 void sort(int A[], int n){
