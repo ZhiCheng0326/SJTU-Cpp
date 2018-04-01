@@ -1,5 +1,7 @@
 #include <iostream>
 
+/*Search for longest palindrome in a long text. Output includes it's length and the sentence. */
+
 using namespace std;
 
 bool isAlphabet(char character){
