@@ -28,7 +28,7 @@ void sort(int A[], int n){
     } 
 }
 
-int initialise(int A[], int B[], int time, int n)
+int initialise(int A[], int B[], int time, int n) //choose the two fastest to go first.
 {
     time += A[1];
     B[0] = A[0];
@@ -38,8 +38,8 @@ int initialise(int A[], int B[], int time, int n)
     return time;
 }
 
-int to(int A[], int B[], int time, int n)
-{
+int to(int A[], int B[], int time, int n)   //choose the two slowest from A to B.
+{   
     for(int i = n-1; i >= 0; i--){
         int prev = i-1;
         if (A[i] != 0) {
@@ -55,7 +55,7 @@ int to(int A[], int B[], int time, int n)
     return time;
 }
 
-int back(int A[], int B[], int time, int n)
+int back(int A[], int B[], int time, int n)     //choose the fastest to back to A.
 {
     for(int i = 0; i < n; ++i){
         if (B[i] != 0) {
@@ -76,22 +76,23 @@ int main()
     cout << "Please input n:";
     cin >> n;
 
-    while(cin >> A[index]){
+    while(cin >> A[index]){     //store data in list.
         index ++;
         if (index == n){break;}
     }
 
-    sort(A,n);      //sort from smallest to greatest
+    sort(A,n);      //sort from smallest to greatest.
+    time = initialise(A, B, time, n);
 
     bool allZero = false;
-    while(!allZero){
+    while(!allZero){            //loop until array A all zero, meaning all at B.
 
-        if (A[0] != 0 && A[1] != 0){
+        time = back(A, B, time, n);
+
+        if (A[0] != 0 && A[1] != 0){                //to decide whether are the two fastest at A, if yes allow the two fastest to go first.
             time = initialise(A, B, time, n);
         }
-        
-        else{
-            time = back(A, B, time, n);
+        else{                               //else, choose the two slowest to go.
             time = to(A, B, time, n);
         }
 
@@ -101,7 +102,7 @@ int main()
                 break;
             }
 
-            else{allZero = true;}
+            else{allZero = true;}       //if allZero, break the loop. 
         }
     }
     
