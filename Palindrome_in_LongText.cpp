@@ -4,16 +4,16 @@
 
 using namespace std;
 
-bool isAlphabet(char character){
+bool isAlphabet(char character){        //return true if the char is alphabet.
     if (character <'A' || (character >'Z' && character < 'a') || character >'z'){
         return false;
     }
     else{
         return true;
-    }      
+    }
 }
 
-void skipNonAlphabet(int &left, int &right, int length, char input[])
+void skipNonAlphabet(int &left, int &right, int length, char input[])       //skip if Non Alphabet found
 {
     while (!isAlphabet(input[left]) && left >= 0){left--;}
     while (!isAlphabet(input[right]) && right < length){right++;}
@@ -36,7 +36,7 @@ void checkPalindrome(int prev, int next, int length, char input[], int &thisHead
     if (odd) {thisSum +=1 ;}
 }
 
-void printOutput(int lastHead, int lastTail,char temp[],char input[])
+void printOutput(int lastHead, int lastTail,char temp[],char input[]) //print out the result.
 {
     for(int j = lastHead; j <= lastTail; ++j){
 
@@ -50,7 +50,7 @@ void printOutput(int lastHead, int lastTail,char temp[],char input[])
     cout << endl; //output --> Madam,I'm Adam.
 }
 
-void lowerCase(int &length, char temp[], char input[])
+void lowerCase(int &length, char temp[], char input[])      //turn the Upper case char to Lower case and store in temp array. 
 {
     for (int k = 0; input[k] != '\0'; ++k){
         length++;
@@ -70,25 +70,25 @@ int main()
     
     int lastSum = 0,thisSum = 0,prev = 0,next =0,length = 0;
     int lastHead,lastTail,thisHead,thisTail;
-    bool odd = true;
 
     lowerCase(length, temp, input);
-
+    
+    bool odd = true;
     for(int i = 1; i < length; ++i){
 
-        if (!isAlphabet(input[i])) {continue;}
+        if (!isAlphabet(input[i])) {continue;}      //skip the current loop if non alphabet is found.
 
-            prev = i-1;
+            prev = i-1;         //to look for "abcba" type palindrome.
             next = i+1;
             skipNonAlphabet(prev, next, length, input);
             checkPalindrome(prev, next, length, input, thisHead, thisTail, thisSum,odd);
    
-            prev = i;
+            prev = i;           //to look for "abccba" type palindrome.
             next = i+1;
             skipNonAlphabet(prev, next, length,input);
             checkPalindrome(prev, next, length, input, thisHead, thisTail, thisSum,!odd);
 
-        if (thisSum > lastSum){
+        if (thisSum > lastSum){     //compare the length of current palindrome found and the previous palindrome.
                 lastSum = thisSum;
                 thisSum = 0;
                 lastHead = thisHead;
