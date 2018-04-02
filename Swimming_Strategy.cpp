@@ -87,25 +87,27 @@ int main()
     bool allZero = false;
     while(!allZero){            //loop until array A all zero, meaning all at B.
 
-        time = back(A, B, time, n);
-
-        if (A[0] != 0 && A[1] != 0){                //to decide whether are the two fastest at A, if yes allow the two fastest to go first.
-            time = initialise(A, B, time, n);
-        }
-        else{                               //else, choose the two slowest to go.
-            time = to(A, B, time, n);
-        }
-
         for(int i = 0; i<n; ++i){
             if (A[i] != 0){
                 allZero = false;
                 break;
             }
-
             else{allZero = true;}       //if allZero, break the loop. 
         }
-    }
-    
+        if(allZero){
+            break;
+        }
+        else{
+            time = back(A, B, time, n);
+
+            if (A[0] != 0 && A[1] != 0){                //to decide whether are the two fastest at A, if yes allow the two fastest to go first.
+                time = initialise(A, B, time, n);
+            }
+            else{                               //else, choose the two slowest to go.
+                time = to(A, B, time, n);
+            }
+        }        
+    }  
     cout << time << endl;
 
     system("PAUSE");
