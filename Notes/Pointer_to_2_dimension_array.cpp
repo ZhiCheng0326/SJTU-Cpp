@@ -9,7 +9,8 @@ int main()
     int (*p)[5];                //to declare pointer to 1 dimension array
     
     p=a;
-    cout << p << endl;          //output : address
+    cout << p+1 << endl;        //output : address of a[1][0]
+    cout << *p+1 << endl;       //output : address2 of a[0][1]
     cout << *(*p+1)<< endl;     //output : 1
     cout << **(p+1)<< endl;     //output: 5
     cout << **(p+1)+1<< endl;   //output: 6
