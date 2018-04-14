@@ -2,7 +2,7 @@
 This program allows user to decide...
 - number of length accepted
 - number and sensitive words to be filtered
-- type of punctuation to ignore filtration
+- type of useless punctuation to ignore filtration
 - type of punctuation not to ignore filtration
 */
 
