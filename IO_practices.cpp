@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 
+//this program is to used to access to a cpp file named "hello.cpp" and add the numbering to each line and save into "hello_linenum.cpp"
+
 using namespace std;
 
 int main()
@@ -12,8 +14,8 @@ int main()
     infile.open("hello.cpp");
     outfile.open("hello_linenum.cpp");
 
-    if (!infile) {cerr << "create file error\n"; return 1;}
-    if (!outfile) {cerr << "create file error\n"; return 1;}
+    if (!infile) {cerr << "create file error\n"; return 1;}     //cout if file cannot opened or create
+    if (!outfile) {cerr << "create file error\n"; return 1;}    //cout if file cannot opened or create
 
     outfile << num << '\t';
 
@@ -29,3 +31,30 @@ int main()
     infile.close();
     return 0;
 }
+
+/*Input:
+// print "Hello Everyone!"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	cout << "Hello Everyone!" <<endl;
+	return 0;
+}
+*/
+
+
+/*Output:
+1	// print "Hello Everyone!"
+2	#include <iostream>
+3	
+4	using namespace std;
+5	
+6	int main()
+7	{
+8		cout << "Hello Everyone!" <<endl;
+9		return 0;
+10	}
+*/
