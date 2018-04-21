@@ -76,7 +76,7 @@ bool compare(StudentT &left, StudentT &right, int n) //compare their birthday da
     return false;
 }
 
-void Swap(StudentT &left, StudentT &right)      //swap location in StudentArray
+void Swap(StudentT &left, StudentT &right)      //swap the objects in StudentArray
 {
     StudentT temp;
     temp = left;
