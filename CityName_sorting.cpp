@@ -7,10 +7,9 @@ using namespace std;
 
 int main()
 {
-    int i = 0; char *left, *right;
-    char name[30];
+    int i = 0;
+    char name[30], *cityList[30], *temp;
     cout << "Please input the names of cities, 1 city per line(@--end):" << endl;
-    char *cityList[30];
     cin >> name;
 
     while (name[0]!= '@'){ 
@@ -24,10 +23,9 @@ int main()
         flag = false;
         for(int x= 0; x<i-1; ++x){
             if (strcmp(cityList[x], cityList[x+1])>0){
-                left = cityList[x];             //left is a pointer to store the address of the 1st dimention array at the left
-                right = cityList[x+1];          //right is a pointer to store the address of the 1st dimension array at the right
-                cityList[x] = right;
-                cityList[x+1] = left;
+                temp = cityList[x];                     //temp is a pointer to store the address of the 1st dimention array
+                cityList[x] = cityList[x+1];
+                cityList[x+1] = temp;
                 flag = true;
             }
         }
