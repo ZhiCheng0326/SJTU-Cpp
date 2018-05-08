@@ -82,7 +82,17 @@ int main()
             next = i+1;
             skipNonAlphabet(prev, next, length, input);
             checkPalindrome(prev, next, length, input, thisHead, thisTail, thisSum,odd);
-   
+        
+        if (thisSum > lastSum){     //compare the length of current palindrome found and the previous palindrome.
+                lastSum = thisSum;
+                thisSum = 0;
+                lastHead = thisHead;
+                lastTail = thisTail;
+            }
+        else{
+                thisSum = 0;
+            }   
+        
             prev = i;           //to look for "abccba" type palindrome.
             next = i+1;
             skipNonAlphabet(prev, next, length,input);
