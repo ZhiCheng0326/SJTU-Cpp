@@ -28,10 +28,10 @@ int main()
 
     for(int i=0; arr[i][0]!='@'; ++i){
         for(int j=0; j<30; ++j){
-            if(arr[i][j]==toDelete){
+            if(arr[i][j]==toDelete){                        //found requested character
                 cnt = j;
-                while(arr[i][cnt]!='\0'){
-                    arr[i][cnt] = arr[i][cnt+1];
+                while(arr[i][cnt]!='\0'){                   
+                    arr[i][cnt] = arr[i][cnt+1];            //replacing the removed char with the next char 
                     ++cnt;
                 }
                 --j;
@@ -42,8 +42,8 @@ int main()
     while(flag){
         flag = false;
         for(int i=0; i<num-1; ++i){
-            if(strcmp(arr[i],arr[i+1])<0){
-                strcpy(temp, arr[i]);
+            if(strcmp(arr[i],arr[i+1])<0){          //sorting
+                strcpy(temp, arr[i]);               //exchange position with next array
                 strcpy(arr[i], arr[i+1]);
                 strcpy(arr[i+1], temp);
                 flag = true;
