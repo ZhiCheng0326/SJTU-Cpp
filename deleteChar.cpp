@@ -20,7 +20,7 @@ int main()
     cin>> toDelete;
     int num = 0,cnt;
 
-    char arr[30][30];
+    char arr[30][30];               //2d array to store array of char, "{{'a','b','c'}, {'d','e','f'}}"
     while(cin>>arr[num]){
         if (arr[num][0]=='@'){break;}
         ++num;
