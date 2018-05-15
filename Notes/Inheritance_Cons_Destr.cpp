@@ -13,8 +13,8 @@ public:
     }
     
 protected: 
-      char *name; 
-	    int age;
+      	char *name; 
+	int age;
 };
 
 
@@ -23,18 +23,18 @@ public:
     Student(const char *s,  int a,  int n,  char *cls):  People(s, a) {
            s_no = n;     
            class_no = new char[strlen(cls) + 1];
-	         strcpy(class_no, cls);
+	   strcpy(class_no, cls);
            cout << "Student constructor: student number is " << s_no << ", class number is " << class_no << endl;
     }
     
     ~Student( ) {
            cout << "Student destructor:  student numberis " << s_no <<  ", class number is " << class_no  << endl;
-	         delete   class_no;
+	   delete   class_no;
     } 
     
 private:       
-    int s_no;
-	  char *class_no;
+    	int s_no;
+	char *class_no;
 };
 
 
