@@ -9,7 +9,7 @@ public:
     
     ~People(){    
           cout << "People destructor: " << '[' << name << "]   age : "<< age << endl;
-	        delete  name;
+	  delete  name;
     }
     
 protected: 
