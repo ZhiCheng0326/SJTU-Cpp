@@ -8,12 +8,13 @@ using namespace std;
 
 class LongLongInt
 {
+    friend LongLongInt operator+(const LongLongInt &n1,const LongLongInt &n2);
+    friend ostream &operator <<(ostream &os, const LongLongInt& n);
     public:
+        LongLongInt &operator=(const LongLongInt &right);
         LongLongInt(char *temp);
         LongLongInt();
         LongLongInt(const LongLongInt &c);
-        void add(const LongLongInt &a, const LongLongInt &b);
-        void display();
         ~LongLongInt(){delete[]num;}
 
     private:
@@ -23,7 +24,7 @@ class LongLongInt
 };
 
 #endif // LONGLONGINT_H
-__________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________________________
  //File:LongLongInt.cpp
  #include "LongLongInt.h"
 
@@ -51,93 +52,104 @@ LongLongInt::LongLongInt(const LongLongInt &c)      //copy constructor
     num[numcount] = '\0';
 }
 
-void LongLongInt::add(const LongLongInt &a, const LongLongInt &b)
+LongLongInt operator+(const LongLongInt &n1,const LongLongInt &n2)
 {
-    delete []num;
-    (a.numcount>=b.numcount) ? (numcount= a.numcount): (numcount = b.numcount);
-    num = new char[numcount+2];             //extra one for '\0' and num[0] to store number '1' if sum value > 9
-    num[numcount+1] = '\0';
-    int numindex = numcount;
-    int aindex = a.numcount-1;
-    int bindex = b.numcount-1;
+    LongLongInt temp;
+    (n1.numcount>=n2.numcount) ? (temp.numcount= n1.numcount+1): (temp.numcount = n2.numcount+1);
+    temp.num = new char[temp.numcount+2];             //extra one for '\0' and num[0] to store number '1' if sum value > 9
+    temp.num[temp.numcount+1] = '\0';
+    temp.num[0] = 'x';                   //if num[0] = 'x' means the sum of both first digit of the LongLongInt< 10
+    int numindex = temp.numcount-1;
+    int aindex = n1.numcount-1;
+    int bindex = n2.numcount-1;
     char total;
-    num[0] = 'x';                   //if num[0] = 'x' means the sum of both first digit of the LongLongInt< 10
     int addTens = 0;
     while(numindex>=1){             //begin adding from the back
         if(aindex < 0){
-            total = b.num[bindex]+addTens;
+            total = n2.num[bindex]+addTens;
         }
         else if(bindex <0){
-            total = a.num[aindex]+addTens;
+            total = n1.num[aindex]+addTens;
         }
         else{
-            total = a.num[aindex] + b.num[bindex] - '0' + addTens;
+            total = n1.num[aindex] + n2.num[bindex] - '0' + addTens;
         }
-
         if(total>'9'){
-            num[numindex] = total - 10;      //back to remainder
+            temp.num[numindex] = total - 10;      //back to remainder
             addTens = 1;
             if(aindex-1 < 0 && bindex-1 < 0){
-                num[0] = '1';
+                temp.num[0] = '1';
             }
         }
         else{
-            num[numindex] = total;
+            temp.num[numindex] = total;
             addTens = 0;
         }
         numindex--;aindex--;bindex--;
     }
+    return temp;
 }
 
-void LongLongInt::display()
+LongLongInt& LongLongInt::operator=(const LongLongInt &right)
 {
-    if (num[0] != 'x'){
-            cout << num;
+    delete []num;
+    num = new char [right.numcount+1];
+    numcount = right.numcount;
+    num[numcount]='\0';
+    for(int i=0; i<right.numcount; ++i){
+        num[i] = right.num[i];
+    }
+    return *this;
+}
+
+ostream &operator <<(ostream &os, const LongLongInt& n)
+{
+    if (n.num[0] != 'x'){
+            os << n.num;
     }
     else{
-        for(int i = 1; i<= numcount; ++i){          // num[0] = 'x', thus start printing from num[1]
-            cout << num[i];
+        for(int i = 1; i<= n.numcount; ++i){          // num[0] = 'x', thus start printing from num[1]
+            os << n.num[i];
         }
     }
-    cout << endl;
-    cout << endl;
+    return os;
 }
 _______________________________________________________________________________________________________________________________________________
  //File:main.cpp
- #include "LongLongInt.h"
+#include "LongLongInt.h"
 
 using namespace std;
 
 int main()
 {
-    LongLongInt a = "933333333333880";
-    LongLongInt b = "99999999999999";
+    LongLongInt a = "11111111111111113";
+    LongLongInt b = "9222222222222223";
     LongLongInt sumIs;
 
-    cout << "A:";
-    a.display();
-    cout << "B:";
-    b.display();
+    cout << "a:" << a <<endl;
+    cout << "b:" << b <<endl;
 
-    sumIs.add(a,b);
-    cout << "After adding A & B:" ;
-    sumIs.display();
+    sumIs = a+b;
+    cout<<endl;
+    cout << "a + b = " ;
+    cout << sumIs << endl;
 
     LongLongInt c = a;
 
-    cout <<"After equal"<<endl;
-    cout << "A:";
-    a.display();
-    cout << "C:";
-    c.display();
+    cout<<endl;
+    cout << "After equal, c = a" << endl;
+    cout << "a:" << a << '\t';
+    cout << "c:" << c << endl;
 
-    sumIs.add(a,b);
-    cout << "After adding A & B:" ;
-    sumIs.display();
+    sumIs = a;
+    cout << endl;
+    cout << "After equal, sumIs = a" << endl;
+    cout << "sumIs:" << sumIs << '\t';
+    cout << "a: " << a << endl;
 
-    sumIs.add(a,c);
-    cout << "After adding A & C:" ;
-    sumIs.display();
+    sumIs = a+c;
+    cout << endl;
+    cout << "a + c = "<< sumIs << endl;
 
     return 0;
 }
