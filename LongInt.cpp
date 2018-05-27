@@ -1,4 +1,5 @@
-/* This practice mainly for inheritance purpose. Create a derived class, LongInt which inherit from LongLongInt based class with more function added.
+/* This practice mainly for inheritance purpose. Create a derived class, 
+   LongInt which inherit from LongLongInt based class with more function added.
 
 Main function in LongLongInt based class include : add, <<, =
 Main function in LongInt derived class include: add, minus, comparison, ++, --, >> , <<, = 
@@ -317,7 +318,8 @@ istream &operator>>(istream &is, LongInt &obj)              //cin num array
 
 bool operator <(const LongInt &n1, const LongInt &n2)
 {
-    if((n1.getNeg() && !n2.getNeg()) || ((n1.getNeg() && n2.getNeg()||!n1.getNeg() && !n2.getNeg() && strcmp(&n1.getNum(),&n2.getNum())<0)) || (!n1.getNeg() && !n2.getNeg() && n1.getCnt()<n2.getCnt())){
+    if((n1.getNeg() && !n2.getNeg()) || ((n1.getNeg() && n2.getNeg()||!n1.getNeg() && !n2.getNeg() && strcmp(&n1.getNum(),&n2.getNum())<0)) 
+       || (!n1.getNeg() && !n2.getNeg() && n1.getCnt()<n2.getCnt())){
         return true;
     }
     else{
@@ -327,7 +329,8 @@ bool operator <(const LongInt &n1, const LongInt &n2)
 
 bool operator >(const LongInt &n1, const LongInt &n2)
 {
-    if((!n1.getNeg() && n2.getNeg()) || ((n1.getNeg() && n2.getNeg() || !n1.getNeg() && !n2.getNeg()) && strcmp(&n1.getNum(),&n2.getNum())>0) || (!n1.getNeg() && !n2.getNeg() && n1.getCnt()>n2.getCnt())){
+    if((!n1.getNeg() && n2.getNeg()) || ((n1.getNeg() && n2.getNeg() || !n1.getNeg() && !n2.getNeg()) && strcmp(&n1.getNum(),&n2.getNum())>0)
+       || (!n1.getNeg() && !n2.getNeg() && n1.getCnt()>n2.getCnt())){
         return true;
     }
     else{
@@ -337,7 +340,8 @@ bool operator >(const LongInt &n1, const LongInt &n2)
 
 bool operator <=(const LongInt &n1, const LongInt &n2)
 {
-    if((n1.getNeg() && !n2.getNeg()) || ((n1.getNeg() && n2.getNeg() || !n1.getNeg() && !n2.getNeg()) && strcmp(&n1.getNum(),&n2.getNum())<=0) || (!n1.getNeg() && !n2.getNeg() && n1.getCnt()<=n2.getCnt())){
+    if((n1.getNeg() && !n2.getNeg()) || ((n1.getNeg() && n2.getNeg() || !n1.getNeg() && !n2.getNeg()) && strcmp(&n1.getNum(),&n2.getNum())<=0)
+       || (!n1.getNeg() && !n2.getNeg() && n1.getCnt()<=n2.getCnt())){
         return true;
     }
     else{
@@ -347,7 +351,8 @@ bool operator <=(const LongInt &n1, const LongInt &n2)
 
 bool operator >=(const LongInt &n1, const LongInt &n2)
 {
-    if((!n1.getNeg() && n2.getNeg()) || ((n1.getNeg() && n2.getNeg() || !n1.getNeg() && !n2.getNeg()) && strcmp(&n1.getNum(),&n2.getNum())>=0) || (!n1.getNeg() && !n2.getNeg() && n1.getCnt()>=n2.getCnt())){
+    if((!n1.getNeg() && n2.getNeg()) || ((n1.getNeg() && n2.getNeg() || !n1.getNeg() && !n2.getNeg()) && strcmp(&n1.getNum(),&n2.getNum())>=0)
+       || (!n1.getNeg() && !n2.getNeg() && n1.getCnt()>=n2.getCnt())){
         return true;
     }
     else{
