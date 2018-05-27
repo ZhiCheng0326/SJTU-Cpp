@@ -1,3 +1,17 @@
+/* This program designed for searching keyword in a long text. 
+If non-alphabet found between keyword in the long text, ignore.
+Long text may consists of multiple line. 
+First line of input indicating N number of keyword. Second and N+1 showing keywords.
+N+2 line to the end is the long text.
+Output number of keyword found.
+
+Input:                  Output: 
+1                       1
+abc
+ijrfjrf
+jeija@b&cejd
+*/
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -13,7 +27,7 @@ void lower(char arr[])
     }
 
 }
-//9,10
+
 int main()
 {
     ifstream infile;
