@@ -298,7 +298,7 @@ istream &operator>>(istream &is, LongInt &obj)              //cin num array
             continue;
         }
         ++cnt;
-        if (index==limit-2){                        //should be limit-2 instead of limit-1
+        if (index==limit-2){                         //should be limit-2 instead of limit-1
             temp = new char[limit];                 //create temp dynamic array
             strcpy(temp,&obj.lliNum.getNum());      //copy num to temp
             limit += 20;                            //increase limit
