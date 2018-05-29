@@ -1,11 +1,11 @@
-/* This program designed for searching keyword in a long text. 
+/* This program designed for searching keyword in a long text.
 If non-alphabet found between keyword in the long text, ignore.
-Long text may consists of multiple line. 
+Long text may consists of multiple line.
 First line of input indicating N number of keyword. Second and N+1 showing keywords.
 N+2 line to the end is the long text.
 Output number of keyword found.
 
-Input:                  Output: 
+Input:                  Output:
 1                       1
 abc
 ijrfjrf
@@ -33,7 +33,7 @@ int main()
     ifstream infile;
     ofstream outfile;
     infile.open("keyword.in");
-    outfile.open("keyword.out");
+    outfile.open("keyword1.out");
 
     if(!infile){cerr << "Infile open error";}
     if(!outfile){cerr<< "Outfile open error";}
@@ -70,17 +70,17 @@ int main()
         ++index;
         if(index == limit-2){
             temp = new char [limit];
-            for(int i=0; i<index; ++i){
-                temp[i] = web[i];
-            }
-            //strcpy(temp,web);
+           for(int i=0; i<index; ++i){
+               temp[i] = web[i];
+           }
+            // strcpy(temp,web);
             delete []web;
             limit +=20;
             web = new char[limit+1];
-            for(int i=0; i<index; ++i){
-                web[i] = temp[i];
-            }
-            //strcpy(web,temp);
+           for(int i=0; i<index; ++i){
+               web[i] = temp[i];
+           }
+            // strcpy(web,temp);
             delete []temp;
         }
     }
@@ -115,14 +115,14 @@ int main()
                 }
         }
     }
-    
+
     for(int i=0; i<keyCount; ++i){      //delete dynamic 2d array
         delete []keyword[i];
     }
     delete []keyword;
 
     outfile<<ans;       //output answer to keyword.out
-    
+
     infile.close();
     outfile.close();
 
