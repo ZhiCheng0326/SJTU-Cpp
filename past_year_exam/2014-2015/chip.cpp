@@ -51,6 +51,11 @@ int main()
 
     outfile << price;
 
+    for(int i=0; i<M; ++i){
+        delete []arr[i];
+    }
+    delete []arr;
+
     infile.close();
     outfile.close();
 
