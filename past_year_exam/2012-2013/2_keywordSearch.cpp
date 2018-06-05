@@ -39,10 +39,8 @@ int main()
     if(!outfile){cerr<< "Outfile open error";}
 
     //get number of keyword
-    char num[3];
     int keyCount;
-    infile.getline(num,3);
-    num[1] == '\0' ? keyCount = num[0] - '0' : keyCount = (num[0] - '0') * 10;
+    infile >> keyCount;
 
     //get keyword
     char **keyword;
