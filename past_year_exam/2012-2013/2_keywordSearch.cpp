@@ -54,9 +54,6 @@ int main()
         infile.getline(keyword[i],41);
         lower(keyword[i]);
     }
-    for(int i=0; i<keyCount; ++i){
-        cout << keyword[i]<<endl;
-    }
 
     //get web data
     char *web, *temp, ch;
