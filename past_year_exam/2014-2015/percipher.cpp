@@ -18,7 +18,7 @@ int main()
 
     char secret[11], sentence[101];
     infile.getline(secret,11);
-    while(infile>>sentence);
+    infile>>sentence;
 
     int secretLen = strlen(secret), sentenceLen = strlen(sentence), row = secretLen, column, index = 0;
     column = (sentenceLen % secretLen == 0) ? (sentenceLen/secretLen)+1 : (sentenceLen/secretLen)+2;
