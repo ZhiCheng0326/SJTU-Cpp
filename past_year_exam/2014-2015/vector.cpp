@@ -8,7 +8,7 @@ using namespace std;
 class Vector
 {
     friend ostream &operator<<(ostream &os, const Vector &obj);
-    friend istream &operator>>(istream &is, const Vector &obj);
+    friend istream &operator>>(istream &is, Vector &obj);
     friend Vector operator +(const Vector &v1, const Vector &v2);
 
     public:
@@ -59,7 +59,7 @@ ostream &operator<<(ostream &os, const Vector &obj)
     return os;
 }
 
-istream &operator>>(istream &is, const Vector &obj)
+istream &operator>>(istream &is, Vector &obj)
 {
     for(int i=0; i<obj.numcount; ++i){
         is>>obj.num[i];
