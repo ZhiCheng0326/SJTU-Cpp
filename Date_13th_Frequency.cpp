@@ -13,14 +13,11 @@ int main()
     cout << "Please enter n: " << endl;
     cin >> n;
 
-    bool isLeap;
     for (int i = 1900; i < (1900+n); ++i){
         if (i%4 == 0 && (i%100 != 0 || i% 400 ==0)){
-            isLeap = true;
             monthDays[1] = 29;      //feb in leap year has 29 days
             }
         else{
-            isLeap = false;
             monthDays[1] = 28;
         }
 
